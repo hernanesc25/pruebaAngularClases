@@ -1,11 +1,10 @@
-import express, { static } from 'express';
-import { join } from 'path';
+const express = require ('express');
+const app = express ();
+const path = require ('path');
 
-const app = express();
-
-app.use(static(__dirname+'/dist/angular-tour-of-heroes/'));
-app.get('/',function(req,res){
-    res.sendFile(join(__dirname+'dist/angular-tour-of-heroes/index.html'));
-});
-
+app.use(express.static(__dirname+'/angular-tour-of-heroes/'));
 app.listen(process.env.PORT || 8080);
+
+app.get('/*',function(req,res){
+    res.sendFile(path.join(__dirname+'/angular-tour-of-heroes/index.html'));
+});
